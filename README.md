@@ -1,3 +1,16 @@
+I got a C+ in Linear Algebra. But then—
+
+Instead of accepting it as a weakness, I decided to relearn Linear Algebra by building it.
+
+This project is a visual-first, interactive learning app that explains Linear Algebra through intuition, Python, and data-driven storytelling — not symbols first.
+Vectors become directions, matrices become transformations, and eigenvectors become invariant directions you can actually see.
+
+The app evolves alongside my own learning: as concepts click, the explanations improve.
+
+This is a learning-by-building experiment rooted in one belief: understanding is a design problem.
+
+
+
 # LinStory: The Linear Algebra Story 📐✨
 
 **LinStory** is an interactive, gamified learning platform that reimagines how Linear Algebra is taught. Instead of dry textbooks or static videos, LinStory uses a **Hybrid Content Engine** to weave narrative storytelling with dynamic, interactive React visualizations.
