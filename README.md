@@ -60,4 +60,4 @@ Linear Algebra is the language of modern data and AI. LinStory creates a "bridge
 
 ---
 
-*Built with ❤️ by [Your Name]*
+*Built with ❤️ by Ishaan Bansal*
