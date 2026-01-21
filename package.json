@@ -6,6 +6,6 @@
         "install-backend": "cd backend && pip install -r requirements.txt"
     },
     "engines": {
-        "node": "18.x"
+        "node": "20.x"
     }
 }
