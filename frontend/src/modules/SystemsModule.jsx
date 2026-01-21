@@ -103,7 +103,6 @@ export default function SystemsModule() {
         content: contentChunks[sec.title] || "",
         visualization: getVisualization(sec.visualization),
         controls: getControls(sec.visualization),
-        objectives: sec.objectives,
         objectives: sec.objectives
     }));
 

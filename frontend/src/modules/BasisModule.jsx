@@ -130,7 +130,6 @@ export default function BasisModule() {
         content: contentChunks[sec.title] || "",
         visualization: getVisualization(sec.visualization),
         controls: getControls(sec.visualization),
-        objectives: sec.objectives,
         objectives: sec.objectives
     }));
 
