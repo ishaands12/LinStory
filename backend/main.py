@@ -15,7 +15,7 @@ INCEPTION_API_KEY = os.getenv("INCEPTION_API_KEY")
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:5174"],  # Vite ports
+    allow_origins=["*"], # Allow all for simplicity in MVP deployment
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

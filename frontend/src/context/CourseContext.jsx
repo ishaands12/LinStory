@@ -20,7 +20,7 @@ export function CourseProvider({ children }) {
         const fetchUserData = async () => {
             if (!userId) return;
             try {
-                const res = await fetch(`http://localhost:8000/api/progress/${userId}`);
+                const res = await fetch(`/api/progress/${userId}`);
                 const data = await res.json();
                 if (data.user) {
                     setUser({
@@ -47,7 +47,7 @@ export function CourseProvider({ children }) {
 
     const login = async (username) => {
         try {
-            const res = await fetch('http://localhost:8000/api/users/login', {
+            const res = await fetch('/api/users/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username })
@@ -113,7 +113,7 @@ export function CourseProvider({ children }) {
         setUser({ name: 'Guest Scholar', level: 1, xp: 0 });
 
         try {
-            await fetch('http://localhost:8000/api/progress/reset', {
+            await fetch('/api/progress/reset', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ user_id: 'user_1' })

@@ -9,7 +9,7 @@ export default function DataModule() {
     const computeLeastSquares = async () => {
         if (dataPoints.length < 2) return;
         try {
-            const res = await fetch('http://localhost:8000/api/compute/least-squares', {
+            const res = await fetch('/api/compute/least-squares', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(dataPoints)

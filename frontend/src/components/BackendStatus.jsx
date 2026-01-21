@@ -6,7 +6,7 @@ export default function BackendStatus() {
     useEffect(() => {
         const check = async () => {
             try {
-                await fetch('http://localhost:8000/api/health');
+                await fetch('/api/health');
                 setStatus('online');
             } catch (e) {
                 setStatus('offline');

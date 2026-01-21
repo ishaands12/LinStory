@@ -18,7 +18,7 @@ export default function SVDModule() {
 
     const computeSVD = async () => {
         try {
-            const res = await fetch('http://localhost:8000/api/compute/svd-compression', {
+            const res = await fetch('/api/compute/svd-compression', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ matrix: initialImage, k: svdK })

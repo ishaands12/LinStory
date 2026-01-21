@@ -35,7 +35,7 @@ export default function CheckpointQuiz({ questions, onComplete }) {
             // Save to Backend
             try {
                 // Hardcoded user_1 for MVP
-                const res = await fetch('http://localhost:8000/api/progress/quiz', {
+                const res = await fetch('/api/progress/quiz', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({

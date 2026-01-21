@@ -14,7 +14,7 @@ export default function VectorsModule() {
 
     const computeDotProduct = async () => {
         try {
-            const res = await fetch('http://localhost:8000/api/compute/dot-product', {
+            const res = await fetch('/api/compute/dot-product', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ v1, v2 })

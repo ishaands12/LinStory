@@ -13,7 +13,7 @@ export default function MatricesModule() {
     // --- API HELPER FUNCTION ---
     const postCompute = async (endpoint, body) => {
         try {
-            const res = await fetch(`http://localhost:8000/api/compute/${endpoint}`, {
+            const res = await fetch(`/api/compute/${endpoint}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(body)
