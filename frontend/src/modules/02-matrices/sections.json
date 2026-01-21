@@ -1,0 +1,56 @@
+{
+    "id": "matrices",
+    "title": "Module 2: Matrices",
+    "description": "Linear transformations, determinants, and eigenvectors.",
+    "sections": [
+        {
+            "id": "intuition",
+            "title": "The Grid Transformation",
+            "contentKey": "The Grid Transformation",
+            "visualization": "matrix-grid",
+            "objectives": [
+                "Visualize matrices as grid transformations",
+                "Understand linearity"
+            ]
+        },
+        {
+            "id": "multiplication",
+            "title": "Matrix-Vector Multiplication",
+            "contentKey": "Matrix-Vector Multiplication",
+            "visualization": "matrix-mult",
+            "objectives": [
+                "Track basis vectors i-hat and j-hat",
+                "Apply transformation to a vector"
+            ]
+        },
+        {
+            "id": "determinant",
+            "title": "The Area Factor (Determinant)",
+            "contentKey": "The Area Factor (Determinant)",
+            "visualization": "matrix-det",
+            "objectives": [
+                "Interpret determinant as area scaling",
+                "Understand zero determinant collapse"
+            ]
+        },
+        {
+            "id": "eigen",
+            "title": "Stubborn Directions (Eigenvectors)",
+            "contentKey": "Stubborn Directions (Eigenvectors)",
+            "visualization": "matrix-eigen",
+            "objectives": [
+                "Identify invariant directions",
+                "Visual intuition for eigenvectors"
+            ]
+        },
+        {
+            "id": "quiz",
+            "title": "Check Your Understanding",
+            "contentKey": "Check Your Understanding",
+            "visualization": "quiz-matrices",
+            "objectives": [
+                "Assessment"
+            ]
+        }
+    ]
+}

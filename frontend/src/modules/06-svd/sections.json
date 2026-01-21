@@ -1,0 +1,36 @@
+{
+    "id": "advanced",
+    "title": "Module 6: SVD & Applications",
+    "description": "Image compression and the final boss of Linear Algebra.",
+    "sections": [
+        {
+            "id": "intro",
+            "title": "The Swiss Army Knife",
+            "contentKey": "The Swiss Army Knife",
+            "visualization": "svd-intro",
+            "objectives": [
+                "Define SVD components",
+                "Visualize Rotation-Stretch-Rotation"
+            ]
+        },
+        {
+            "id": "compression",
+            "title": "Image Compression",
+            "contentKey": "Image Compression",
+            "visualization": "svd-compression",
+            "objectives": [
+                "Apply SVD to Images",
+                "Understand Rank-K Approximation"
+            ]
+        },
+        {
+            "id": "quiz",
+            "title": "Check Your Understanding",
+            "contentKey": "Check Your Understanding",
+            "visualization": "quiz-svd",
+            "objectives": [
+                "Assessment"
+            ]
+        }
+    ]
+}

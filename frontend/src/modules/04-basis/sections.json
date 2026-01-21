@@ -1,0 +1,46 @@
+{
+    "id": "basis",
+    "title": "Module 4: Basis & Span",
+    "description": "Coordinate systems, linear combinations, and span.",
+    "sections": [
+        {
+            "id": "intro",
+            "title": "The Building Blocks (Basis)",
+            "contentKey": "The Building Blocks (Basis)",
+            "visualization": "basis-linear-combo",
+            "objectives": [
+                "Define 'Basis'",
+                "Visualize linear combinations"
+            ]
+        },
+        {
+            "id": "change",
+            "title": "Changing the Grid (Change of Basis)",
+            "contentKey": "Changing the Grid (Change of Basis)",
+            "visualization": "basis-change-grid",
+            "objectives": [
+                "Visualize skewed coordinate systems",
+                "Understand non-standard basis"
+            ]
+        },
+        {
+            "id": "independence",
+            "title": "Linear Independence",
+            "contentKey": "Linear Independence",
+            "visualization": "basis-independence",
+            "objectives": [
+                "Identify linearly dependent vectors",
+                "Visualize span collapse"
+            ]
+        },
+        {
+            "id": "quiz",
+            "title": "Check Your Understanding",
+            "contentKey": "Check Your Understanding",
+            "visualization": "quiz-basis",
+            "objectives": [
+                "Assessment"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,57 @@
+{
+  "id": "vectors",
+  "title": "Module 1: Vectors",
+  "description": "Understanding magnitude, direction, and operations.",
+  "sections": [
+    {
+      "id": "intuition",
+      "title": "1. Intuition: The Physics of Movement",
+      "contentKey": "1. Intuition: The Physics of Movement",
+      "visualization": "vector-single",
+      "objectives": [
+        "Understand vector as displacement",
+        "Vizualize magnitude and direction"
+      ]
+    },
+    {
+      "id": "definition",
+      "title": "2. Definition: The Mathematical Object",
+      "contentKey": "2. Definition: The Mathematical Object",
+      "visualization": "vector-decomposition",
+      "objectives": [
+        "Formal algebraic definition",
+        "Pythagorean magnitude",
+        "Component decomposition"
+      ]
+    },
+    {
+      "id": "addition",
+      "title": "3. Interactive: Vector Addition",
+      "contentKey": "3. Interactive: Vector Addition",
+      "visualization": "vector-addition",
+      "objectives": [
+        "Geometric head-to-tail rule",
+        "Component-wise addition"
+      ]
+    },
+    {
+      "id": "application",
+      "title": "4. Application: Recommender Systems",
+      "contentKey": "4. Application: Recommender Systems",
+      "visualization": "vector-dot-product",
+      "objectives": [
+        "Vectors as data",
+        "Dot product as similarity"
+      ]
+    },
+    {
+      "id": "quiz",
+      "title": "5. Check Your Understanding",
+      "contentKey": "5. Check Your Understanding",
+      "visualization": "quiz-vectors-checkpoint",
+      "objectives": [
+        "Assessment"
+      ]
+    }
+  ]
+}

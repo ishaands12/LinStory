@@ -1,0 +1,63 @@
+
+  const [activeStory, setActiveStory] = useState('vectors'); // 'vectors', 'matrices', 'systems'
+
+  // --- SYSTEMS STATE ---
+  // Line 1: 1x + 1y = 4
+  // Line 2: 1x - 1y = 0
+  const [sysParams, setSysParams] = useState({
+      a1: 1, b1: 1, c1: 4,
+      a2: 1, b2: -1, c2: 0
+  });
+  const [sysSolution, setSysSolution] = useState(null);
+  
+  const solveSystem = async () => {
+       try {
+        const matrix = [[sysParams.a1, sysParams.b1], [sysParams.a2, sysParams.b2]];
+        const target = [sysParams.c1, sysParams.c2];
+        const res = await fetch('http://localhost:8000/api/compute/solve-system', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ matrix, target })
+        });
+        const data = await res.json();
+        if (data.solution) {
+            setSysSolution(data.solution);
+        } else {
+            console.error(data.error);
+            setSysSolution(null);
+        }
+    } catch (e) { console.error(e); }
+  }
+
+  // ... (Previous Stories) ...
+
+  const systemsStory = [
+      {
+          title: "The Meeting Point",
+          content: "A system of linear equations is just asking: 'Where do these two lines cross?' Each equation represents a rule or constraint. The solution is the single point that obeys both rules at once.",
+          visualization: <LinearSystemVisualization 
+                            a1={sysParams.a1} b1={sysParams.b1} c1={sysParams.c1}
+                            a2={sysParams.a2} b2={sysParams.b2} c2={sysParams.c2}
+                            solution={sysSolution}
+                         />,
+          controls: (
+              <div>
+                 <p style={{marginBottom: '0.5rem', color: 'var(--primary)'}}>Line 1: {sysParams.a1}x + {sysParams.b1}y = {sysParams.c1}</p>
+                 <div style={{display:'flex', gap:'0.5rem', marginBottom:'1rem'}}>
+                     <input type="number" value={sysParams.a1} onChange={e => setSysParams({...sysParams, a1: Number(e.target.value)})} style={{width:'50px', padding:'4px', borderRadius:'4px', border:'none', background:'rgba(255,255,255,0.1)', color:'white'}} />
+                     <input type="number" value={sysParams.b1} onChange={e => setSysParams({...sysParams, b1: Number(e.target.value)})} style={{width:'50px', padding:'4px', borderRadius:'4px', border:'none', background:'rgba(255,255,255,0.1)', color:'white'}} />
+                     <input type="number" value={sysParams.c1} onChange={e => setSysParams({...sysParams, c1: Number(e.target.value)})} style={{width:'50px', padding:'4px', borderRadius:'4px', border:'none', background:'rgba(255,255,255,0.1)', color:'white'}} />
+                 </div>
+                 
+                 <p style={{marginBottom: '0.5rem', color: 'var(--accent)'}}>Line 2: {sysParams.a2}x + {sysParams.b2}y = {sysParams.c2}</p>
+                 <div style={{display:'flex', gap:'0.5rem', marginBottom:'1rem'}}>
+                     <input type="number" value={sysParams.a2} onChange={e => setSysParams({...sysParams, a2: Number(e.target.value)})} style={{width:'50px', padding:'4px', borderRadius:'4px', border:'none', background:'rgba(255,255,255,0.1)', color:'white'}} />
+                     <input type="number" value={sysParams.b2} onChange={e => setSysParams({...sysParams, b2: Number(e.target.value)})} style={{width:'50px', padding:'4px', borderRadius:'4px', border:'none', background:'rgba(255,255,255,0.1)', color:'white'}} />
+                     <input type="number" value={sysParams.c2} onChange={e => setSysParams({...sysParams, c2: Number(e.target.value)})} style={{width:'50px', padding:'4px', borderRadius:'4px', border:'none', background:'rgba(255,255,255,0.1)', color:'white'}} />
+                 </div>
+                 
+                 <button className="btn-primary" onClick={solveSystem}>Find Intersection</button>
+              </div>
+          )
+      }
+  ];

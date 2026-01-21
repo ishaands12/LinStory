@@ -1,0 +1,36 @@
+{
+    "id": "data",
+    "title": "Module 5: Data & Regression",
+    "description": "Finding the best fit in a noisy world.",
+    "sections": [
+        {
+            "id": "intro",
+            "title": "The Real World is Messy",
+            "contentKey": "The Real World is Messy",
+            "visualization": "data-scatter",
+            "objectives": [
+                "Understand noisy data",
+                "Define 'Best Fit'"
+            ]
+        },
+        {
+            "id": "least_squares",
+            "title": "The Geometry of Least Squares",
+            "contentKey": "The Geometry of Least Squares",
+            "visualization": "data-least-squares",
+            "objectives": [
+                "Visualize projection",
+                "Apply Normal Equation"
+            ]
+        },
+        {
+            "id": "quiz",
+            "title": "Check Your Understanding",
+            "contentKey": "Check Your Understanding",
+            "visualization": "quiz-data",
+            "objectives": [
+                "Assessment"
+            ]
+        }
+    ]
+}

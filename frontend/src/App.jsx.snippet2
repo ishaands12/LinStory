@@ -1,0 +1,103 @@
+
+  const [determinantResult, setDeterminantResult] = useState(null);
+  const [inverseResult, setInverseResult] = useState(null);
+
+  const computeDeterminant = async () => {
+    try {
+        const res = await fetch('http://localhost:8000/api/compute/determinant', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(matrix)
+        });
+        const data = await res.json();
+        setDeterminantResult(data);
+    } catch (e) { console.error(e); }
+  }
+
+  const computeInverse = async () => {
+    try {
+        const res = await fetch('http://localhost:8000/api/compute/matrix-inverse', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(matrix)
+        });
+        const data = await res.json();
+        setInverseResult(data);
+        if (data.inverse) {
+             // Optional: Animate grid to identity? 
+             // For now just show the matrix
+        }
+    } catch (e) { console.error(e); }
+  }
+
+  // ... (previous matrix stories)
+
+    {
+      title: "The Area Factor (Determinant)",
+      content: "The Determinant is simply the factor by which the transformation scales area. Look at the yellow square (area = 1). After transformation, what is its new area? That is the determinant. If it flips over, the determinant is negative.",
+      visualization: (
+          <div style={{position: 'relative'}}>
+            <MatrixGridVisualization matrix={matrix} />
+             <div style={{
+                position: 'absolute', bottom: '1rem', right: '1rem', 
+                background: 'rgba(0,0,0,0.6)', padding: '1rem', borderRadius: '8px',
+                border: '1px solid gold'
+            }}>
+                <div style={{fontSize: '0.9rem', color: 'var(--text-muted)'}}>Scaling Factor (Det)</div>
+                <div style={{fontSize: '1.5rem', fontWeight: 'bold', color: 'gold'}}>
+                    {determinantResult ? determinantResult.determinant.toFixed(2) : "?"}
+                </div>
+            </div>
+          </div>
+      ),
+      controls: (
+          <div>
+            <p style={{marginBottom:'1rem'}}>Stretch or squash the grid to change the area.</p>
+            {/* Reuse Matrix Controls */}
+             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', maxWidth: '300px', marginBottom: '1rem' }}>
+                <label>a: <input type="number" step="0.5" value={matrix[0][0]} onChange={e => {setMatrix([[Number(e.target.value), matrix[0][1]], matrix[1]]); computeDeterminant();}} style={{width:'100%', background:'rgba(255,255,255,0.1)', border:'none', color:'white', padding:'4px', borderRadius:'4px'}}/></label>
+                <label>b: <input type="number" step="0.5" value={matrix[0][1]} onChange={e => {setMatrix([[matrix[0][0], Number(e.target.value)], matrix[1]]); computeDeterminant();}} style={{width:'100%', background:'rgba(255,255,255,0.1)', border:'none', color:'white', padding:'4px', borderRadius:'4px'}}/></label>
+                <label>c: <input type="number" step="0.5" value={matrix[1][0]} onChange={e => {setMatrix([matrix[0], [Number(e.target.value), matrix[1][1]]]); computeDeterminant();}} style={{width:'100%', background:'rgba(255,255,255,0.1)', border:'none', color:'white', padding:'4px', borderRadius:'4px'}}/></label>
+                <label>d: <input type="number" step="0.5" value={matrix[1][1]} onChange={e => {setMatrix([matrix[0], [matrix[1][0], Number(e.target.value)]]); computeDeterminant();}} style={{width:'100%', background:'rgba(255,255,255,0.1)', border:'none', color:'white', padding:'4px', borderRadius:'4px'}}/></label>
+            </div>
+            <button className="btn-primary" onClick={computeDeterminant}>Calculate Determinant</button>
+          </div>
+      )
+    },
+    {
+        title: "The Undo Button (Inverse)",
+        content: "If a matrix transformation moves points somewhere, the Inverse Matrix moves them back. It un-warps the grid. Multiplying a matrix by its inverse gives you the 'Do Nothing' matrix (Identity).",
+        visualization: (
+             <div style={{position: 'relative'}}>
+                <MatrixGridVisualization matrix={matrix} />
+                  {inverseResult && (
+                    <div style={{ marginTop: '1rem', padding: '1rem', background: 'rgba(255,255,255,0.05)', borderRadius: '8px' }}>
+                        {inverseResult.error ? (
+                            <span style={{color: '#ef4444'}}>{inverseResult.error}</span>
+                        ) : (
+                            <div>
+                                <strong style={{color: '#10b981'}}>Inverse Found:</strong>
+                                <pre>{JSON.stringify(inverseResult.inverse)}</pre>
+                            </div>
+                        )}
+                    </div>
+                )}
+             </div>
+        ),
+        controls: (
+            <div>
+                 <p style={{marginBottom:'1rem'}}>Find the matrix that undoes this transformation.</p>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', maxWidth: '300px', marginBottom: '1rem' }}>
+                    <label>a: <input type="number" step="0.5" value={matrix[0][0]} onChange={e => setMatrix([[Number(e.target.value), matrix[0][1]], matrix[1]])} style={{width:'100%', background:'rgba(255,255,255,0.1)', border:'none', color:'white', padding:'4px', borderRadius:'4px'}}/></label>
+                    <label>b: <input type="number" step="0.5" value={matrix[0][1]} onChange={e => setMatrix([[matrix[0][0], Number(e.target.value)], matrix[1]])} style={{width:'100%', background:'rgba(255,255,255,0.1)', border:'none', color:'white', padding:'4px', borderRadius:'4px'}}/></label>
+                    <label>c: <input type="number" step="0.5" value={matrix[1][0]} onChange={e => setMatrix([matrix[0], [Number(e.target.value), matrix[1][1]]])} style={{width:'100%', background:'rgba(255,255,255,0.1)', border:'none', color:'white', padding:'4px', borderRadius:'4px'}}/></label>
+                    <label>d: <input type="number" step="0.5" value={matrix[1][1]} onChange={e => setMatrix([matrix[0], [matrix[1][0], Number(e.target.value)]])} style={{width:'100%', background:'rgba(255,255,255,0.1)', border:'none', color:'white', padding:'4px', borderRadius:'4px'}}/></label>
+                </div>
+                <div style={{display:'flex', gap:'1rem'}}>
+                    <button className="btn-primary" onClick={computeInverse}>Compute Inverse</button>
+                    <button style={{padding:'8px', background:'rgba(255,255,255,0.1)', borderRadius:'6px', cursor:'pointer', color:'white'}} onClick={() => setMatrix([[1,0],[0,1]])}>Reset to Identity</button>
+                </div>
+            </div>
+        )
+    }
+

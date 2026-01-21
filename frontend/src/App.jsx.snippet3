@@ -1,0 +1,62 @@
+
+  const [eigenResult, setEigenResult] = useState(null);
+
+  const computeEigen = async () => {
+    try {
+        const res = await fetch('http://localhost:8000/api/compute/eigen', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(matrix)
+        });
+        const data = await res.json();
+        setEigenResult(data);
+    } catch (e) { console.error(e); }
+  }
+
+  // To be used in matricesStory:
+
+    {
+        title: "Stubborn Directions (Eigenvectors)",
+        content: "Most vectors get knocked off their span during a transformation (they rotate). But some vectors—Eigenvectors—stay on their own line. They only get stretched or squished by a factor called the Eigenvalue.",
+        visualization: (
+             <div style={{position: 'relative'}}>
+                {/* Pass eigenvectors to visualization if they exist */}
+                <MatrixGridVisualization 
+                    matrix={matrix} 
+                    eigenvectors={eigenResult?.results?.map(r => r.eigenvector) || []} 
+                />
+                 {eigenResult && (
+                    <div style={{ marginTop: '1rem', padding: '1rem', background: 'rgba(236, 72, 153, 0.1)', border: '1px solid #ec4899', borderRadius: '8px' }}>
+                        <strong style={{color: '#ec4899'}}>Found Eigenvectors:</strong>
+                        <ul style={{marginTop:'0.5rem', paddingLeft:'1.5rem', margin:0}}>
+                            {eigenResult.results.map((res, i) => (
+                                <li key={i} style={{marginBottom:'0.5rem'}}>
+                                    Vector: [{res.eigenvector.map(n => n.toFixed(2)).join(', ')}] 
+                                    <span style={{color:'var(--text-muted)'}}> (stretched by {res.eigenvalue.toFixed(2)}x)</span>
+                                </li>
+                            ))}
+                        </ul>
+                         {eigenResult.results.length === 0 && <span style={{color:'var(--text-muted)'}}>No real eigenvectors found (Rotation?)</span>}
+                    </div>
+                )}
+             </div>
+        ),
+        controls: (
+            <div>
+                 <p style={{marginBottom:'1rem'}}>Find the vectors that refuse to rotate.</p>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', maxWidth: '300px', marginBottom: '1rem' }}>
+                    {/* Reuse generic matrix inputs */}
+                    <label>a: <input type="number" step="0.5" value={matrix[0][0]} onChange={e => {setMatrix([[Number(e.target.value), matrix[0][1]], matrix[1]]); setEigenResult(null);}} style={{width:'100%', background:'rgba(255,255,255,0.1)', border:'none', color:'white', padding:'4px', borderRadius:'4px'}}/></label>
+                    <label>b: <input type="number" step="0.5" value={matrix[0][1]} onChange={e => {setMatrix([[matrix[0][0], Number(e.target.value)], matrix[1]]); setEigenResult(null);}} style={{width:'100%', background:'rgba(255,255,255,0.1)', border:'none', color:'white', padding:'4px', borderRadius:'4px'}}/></label>
+                    <label>c: <input type="number" step="0.5" value={matrix[1][0]} onChange={e => {setMatrix([matrix[0], [Number(e.target.value), matrix[1][1]]]); setEigenResult(null);}} style={{width:'100%', background:'rgba(255,255,255,0.1)', border:'none', color:'white', padding:'4px', borderRadius:'4px'}}/></label>
+                    <label>d: <input type="number" step="0.5" value={matrix[1][1]} onChange={e => {setMatrix([matrix[0], [matrix[1][0], Number(e.target.value)]]); setEigenResult(null);}} style={{width:'100%', background:'rgba(255,255,255,0.1)', border:'none', color:'white', padding:'4px', borderRadius:'4px'}}/></label>
+                </div>
+                <div style={{display:'flex', gap:'1rem', flexWrap:'wrap'}}>
+                    <button className="btn-primary" onClick={computeEigen}>Find Eigenvectors</button>
+                    <button style={{padding:'8px', background:'rgba(255,255,255,0.1)', borderRadius:'6px', cursor:'pointer', color:'white'}} onClick={() => {setMatrix([[2,0],[0,0.5]]); setEigenResult(null);}}>Try Scaling (Easy)</button>
+                     <button style={{padding:'8px', background:'rgba(255,255,255,0.1)', borderRadius:'6px', cursor:'pointer', color:'white'}} onClick={() => {setMatrix([[1,1],[0,1]]); setEigenResult(null);}}>Try Shear</button>
+                </div>
+                <HookCard title="Principal Component Analysis" content="PCA finds the 'best' eigenvectors to summarize data. It reduces dimensions while keeping the most important information!" />
+            </div>
+        )
+    }

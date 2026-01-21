@@ -1,0 +1,46 @@
+{
+    "id": "systems",
+    "title": "Module 3: Systems of Equations",
+    "description": "Solving Ax=b, intersections, and singularity.",
+    "sections": [
+        {
+            "id": "geometry",
+            "title": "The Geometric View",
+            "contentKey": "The Intersection Perspective",
+            "visualization": "systems-lines",
+            "objectives": [
+                "Visualize equations as lines",
+                "Identify intersection as the solution"
+            ]
+        },
+        {
+            "id": "matrix_view",
+            "title": "The Matrix View",
+            "contentKey": "The Matrix Perspective",
+            "visualization": "systems-matrix",
+            "objectives": [
+                "Translate system to Ax=b",
+                "Understand linear combination view"
+            ]
+        },
+        {
+            "id": "singularity",
+            "title": "Singular Systems",
+            "contentKey": "When Things Go Wrong (Singularity)",
+            "visualization": "systems-singular",
+            "objectives": [
+                "Identify parallel lines",
+                "Relate determinant 0 to solvability"
+            ]
+        },
+        {
+            "id": "quiz",
+            "title": "Check Your Understanding",
+            "contentKey": "Check Your Understanding",
+            "visualization": "quiz-systems",
+            "objectives": [
+                "Assessment"
+            ]
+        }
+    ]
+}
