@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+numpy
+scipy
+pandas
+pydantic
+python-multipart
+websockets
+requests
+python-dotenv
